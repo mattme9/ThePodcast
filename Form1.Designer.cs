@@ -42,17 +42,20 @@
             // 
             // txtUrl
             // 
-            txtUrl.Location = new Point(12, 70);
+            txtUrl.Location = new Point(20, 112);
+            txtUrl.Margin = new Padding(5, 5, 5, 5);
             txtUrl.Name = "txtUrl";
-            txtUrl.Size = new Size(295, 27);
+            txtUrl.Size = new Size(477, 39);
             txtUrl.TabIndex = 0;
+           
             // 
             // lblUrl
             // 
             lblUrl.AutoSize = true;
-            lblUrl.Location = new Point(12, 47);
+            lblUrl.Location = new Point(20, 75);
+            lblUrl.Margin = new Padding(5, 0, 5, 0);
             lblUrl.Name = "lblUrl";
-            lblUrl.Size = new Size(38, 20);
+            lblUrl.Size = new Size(60, 32);
             lblUrl.TabIndex = 1;
             lblUrl.Text = "URL:";
             lblUrl.Click += label1_Click;
@@ -60,9 +63,10 @@
             // lblCategory
             // 
             lblCategory.AutoSize = true;
-            lblCategory.Location = new Point(12, 106);
+            lblCategory.Location = new Point(20, 170);
+            lblCategory.Margin = new Padding(5, 0, 5, 0);
             lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(72, 20);
+            lblCategory.Size = new Size(115, 32);
             lblCategory.TabIndex = 2;
             lblCategory.Text = "Category:";
             lblCategory.Click += label1_Click_1;
@@ -70,34 +74,38 @@
             // boxCategory
             // 
             boxCategory.FormattingEnabled = true;
-            boxCategory.Location = new Point(12, 129);
+            boxCategory.Location = new Point(20, 206);
+            boxCategory.Margin = new Padding(5, 5, 5, 5);
             boxCategory.Name = "boxCategory";
-            boxCategory.Size = new Size(95, 28);
+            boxCategory.Size = new Size(152, 40);
             boxCategory.TabIndex = 3;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(13, 179);
+            btnAdd.Location = new Point(21, 286);
+            btnAdd.Margin = new Padding(5, 5, 5, 5);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(94, 29);
+            btnAdd.Size = new Size(153, 46);
             btnAdd.TabIndex = 4;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(113, 179);
+            btnDelete.Location = new Point(184, 286);
+            btnDelete.Margin = new Padding(5, 5, 5, 5);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(94, 29);
+            btnDelete.Size = new Size(153, 46);
             btnDelete.TabIndex = 5;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
             // 
             // btnChange
             // 
-            btnChange.Location = new Point(213, 179);
+            btnChange.Location = new Point(346, 286);
+            btnChange.Margin = new Padding(5, 5, 5, 5);
             btnChange.Name = "btnChange";
-            btnChange.Size = new Size(94, 29);
+            btnChange.Size = new Size(153, 46);
             btnChange.TabIndex = 6;
             btnChange.Text = "Change";
             btnChange.UseVisualStyleBackColor = true;
@@ -105,33 +113,36 @@
             // listPoddar
             // 
             listPoddar.FormattingEnabled = true;
-            listPoddar.ItemHeight = 20;
-            listPoddar.Location = new Point(12, 229);
+            listPoddar.ItemHeight = 32;
+            listPoddar.Location = new Point(20, 366);
+            listPoddar.Margin = new Padding(5, 5, 5, 5);
             listPoddar.Name = "listPoddar";
-            listPoddar.Size = new Size(295, 284);
+            listPoddar.Size = new Size(477, 452);
             listPoddar.TabIndex = 7;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(138, 130);
+            textBox1.Location = new Point(224, 208);
+            textBox1.Margin = new Padding(5, 5, 5, 5);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(169, 27);
+            textBox1.Size = new Size(272, 39);
             textBox1.TabIndex = 8;
             // 
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new Point(138, 107);
+            lblName.Location = new Point(224, 171);
+            lblName.Margin = new Padding(5, 0, 5, 0);
             lblName.Name = "lblName";
-            lblName.Size = new Size(52, 20);
+            lblName.Size = new Size(83, 32);
             lblName.TabIndex = 9;
             lblName.Text = "Name:";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1017, 530);
+            ClientSize = new Size(1653, 848);
             Controls.Add(lblName);
             Controls.Add(textBox1);
             Controls.Add(listPoddar);
@@ -142,6 +153,7 @@
             Controls.Add(lblCategory);
             Controls.Add(lblUrl);
             Controls.Add(txtUrl);
+            Margin = new Padding(5, 5, 5, 5);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
