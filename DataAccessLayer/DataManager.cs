@@ -1,4 +1,7 @@
-﻿namespace DataAccessLayer
+﻿using Models;
+using System.Xml.Serialization;
+
+namespace DataAccessLayer
 {
 
     //Denna klass ska hantera användarens datafil (XML Serializer etc).
