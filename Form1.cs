@@ -7,22 +7,32 @@ namespace ThePodcast
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void addCategoryBtn_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void deleteCategoryBtn_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void changeCategoryBtn_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnChange_Click(object sender, EventArgs e)
         {
 
         }
