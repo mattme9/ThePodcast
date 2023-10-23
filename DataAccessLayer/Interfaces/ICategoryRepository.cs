@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,19 +9,8 @@ namespace DataAccessLayer.Interfaces
 {
     public interface ICategoryRepository
     {
-        public void addCategory()
-        {
-
-        }
-
-        public void removeCategory()
-        {
-
-        }
-
-        public void SaveCategory()
-        {
-
-        }
+        void removeCategory(string cat);
+        void AddAndSaveCategory(Category category);
+        List<Category> GetAllCategories();
     }
 }

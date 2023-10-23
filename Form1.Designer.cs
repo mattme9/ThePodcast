@@ -78,6 +78,7 @@
             // 
             // boxCategory
             // 
+            boxCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             boxCategory.FormattingEnabled = true;
             boxCategory.Location = new Point(20, 206);
             boxCategory.Margin = new Padding(5);
@@ -224,6 +225,7 @@
             categoryListBox.Name = "categoryListBox";
             categoryListBox.Size = new Size(477, 420);
             categoryListBox.TabIndex = 19;
+            categoryListBox.SelectedIndexChanged += categoryListBox_SelectedIndexChanged;
             // 
             // Form1
             // 

@@ -14,6 +14,6 @@ namespace DataAccessLayer.Repository
         public void CreatePodcast(Podcast model);
         public void UpdatePodcast(Podcast model);
         public void DeletePodcast(Podcast model);
-        public IEnumerable<Podcast> GetAllPodcasts();
+        // public IEnumerable<Podcast> GetAllPodcasts();
     }
 }

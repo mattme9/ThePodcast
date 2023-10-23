@@ -10,6 +10,11 @@ namespace DataAccessLayer.Models
     {
         public string CategoryName { get; set; }
 
+        public Category(string categoryName)
+        {
+            CategoryName = categoryName;
+        }
+
 
     }
 }

@@ -30,7 +30,7 @@ namespace DataAccessLayer.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Podcast> GetAllPodcasts()
+       /* public IEnumerable<Podcast> GetAllPodcasts()
         {
             var mockListWithPodcasts = new List<Podcast>();
 
@@ -46,7 +46,7 @@ namespace DataAccessLayer.Repository
             );
 
             return mockListWithPodcasts;
-        }
+        } */
 
     }
 }

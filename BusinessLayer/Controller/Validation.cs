@@ -20,6 +20,7 @@ namespace BusinessLayer.Controller
         {
             //loopa igenom lista där vi sparat kategorier
             //kolla om kategori finns
+            return false;
             
         }
     }
