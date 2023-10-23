@@ -40,11 +40,11 @@
             lblName = new Label();
             listBox1 = new ListBox();
             label1 = new Label();
-            textBox2 = new TextBox();
+            CategoryTxt = new TextBox();
             label2 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            addCategoryBtn = new Button();
+            changeCategoryBtn = new Button();
+            deleteCategoryBtn = new Button();
             listBox2 = new ListBox();
             SuspendLayout();
             // 
@@ -84,6 +84,7 @@
             boxCategory.Name = "boxCategory";
             boxCategory.Size = new Size(84, 23);
             boxCategory.TabIndex = 3;
+            boxCategory.SelectedIndexChanged += boxCategory_SelectedIndexChanged;
             // 
             // btnAdd
             // 
@@ -164,13 +165,13 @@
             label1.TabIndex = 11;
             label1.Text = "Episodes";
             // 
-            // textBox2
+            // CategoryTxt
             // 
-            textBox2.Location = new Point(616, 115);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(237, 23);
-            textBox2.TabIndex = 12;
-            textBox2.TextChanged += textBox2_TextChanged;
+            CategoryTxt.Location = new Point(616, 115);
+            CategoryTxt.Name = "CategoryTxt";
+            CategoryTxt.Size = new Size(237, 23);
+            CategoryTxt.TabIndex = 12;
+            CategoryTxt.TextChanged += listBox1_SelectedIndexChanged;
             // 
             // label2
             // 
@@ -181,32 +182,35 @@
             label2.TabIndex = 13;
             label2.Text = "Category:";
             // 
-            // button1
+            // addCategoryBtn
             // 
-            button1.Location = new Point(616, 144);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 14;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            addCategoryBtn.Location = new Point(616, 144);
+            addCategoryBtn.Name = "addCategoryBtn";
+            addCategoryBtn.Size = new Size(75, 23);
+            addCategoryBtn.TabIndex = 14;
+            addCategoryBtn.Text = "Add";
+            addCategoryBtn.UseVisualStyleBackColor = true;
+            addCategoryBtn.Click += addCategory_Click;
             // 
-            // button2
+            // changeCategoryBtn
             // 
-            button2.Location = new Point(697, 144);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 15;
-            button2.Text = "Change";
-            button2.UseVisualStyleBackColor = true;
+            changeCategoryBtn.Location = new Point(697, 144);
+            changeCategoryBtn.Name = "changeCategoryBtn";
+            changeCategoryBtn.Size = new Size(75, 23);
+            changeCategoryBtn.TabIndex = 15;
+            changeCategoryBtn.Text = "Change";
+            changeCategoryBtn.UseVisualStyleBackColor = true;
+            changeCategoryBtn.Click += changeCategory_Click;
             // 
-            // button3
+            // deleteCategoryBtn
             // 
-            button3.Location = new Point(778, 144);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 16;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
+            deleteCategoryBtn.Location = new Point(778, 144);
+            deleteCategoryBtn.Name = "deleteCategoryBtn";
+            deleteCategoryBtn.Size = new Size(75, 23);
+            deleteCategoryBtn.TabIndex = 16;
+            deleteCategoryBtn.Text = "Delete";
+            deleteCategoryBtn.UseVisualStyleBackColor = true;
+            deleteCategoryBtn.Click += deleteCategory_Click;
             // 
             // listBox2
             // 
@@ -223,11 +227,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(890, 398);
             Controls.Add(listBox2);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(deleteCategoryBtn);
+            Controls.Add(changeCategoryBtn);
+            Controls.Add(addCategoryBtn);
             Controls.Add(label2);
-            Controls.Add(textBox2);
+            Controls.Add(CategoryTxt);
             Controls.Add(label1);
             Controls.Add(listBox1);
             Controls.Add(lblName);
@@ -243,6 +247,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load_1;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -261,11 +266,11 @@
         private Label lblName;
         private ListBox listBox1;
         private Label label1;
-        private TextBox textBox2;
+        private TextBox CategoryTxt;
         private Label label2;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button addCategoryBtn;
+        private Button changeCategoryBtn;
+        private Button deleteCategoryBtn;
         private ListBox listBox2;
     }
 }
