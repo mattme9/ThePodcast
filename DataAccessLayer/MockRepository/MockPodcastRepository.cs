@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Models;
+﻿using DataAccessLayer.Interfaces;
+using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public class PodcastRepository : IPodcastRepository
+    public class MockPodcastRepository : IPodcastRepository
     {
-        public PodcastRepository() { 
+        public MockPodcastRepository() { 
        
         }
 
@@ -31,7 +32,21 @@ namespace DataAccessLayer.Repository
 
         public IEnumerable<Podcast> GetAllPodcasts()
         {
-            throw new NotImplementedException();
+            var mockListWithPodcasts = new List<Podcast>();
+
+            mockListWithPodcasts.Add(
+                new Podcast
+                {
+                    Id = new Guid(),
+                    Title = "Kalles film",
+                    Name = "Name",
+                    Description = "Description",
+                    Category = "Category"
+                }
+            );
+
+            return mockListWithPodcasts;
         }
+
     }
 }

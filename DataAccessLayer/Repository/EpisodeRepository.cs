@@ -1,35 +1,35 @@
-﻿using DataAccessLayer.Models;
+﻿using DataAccessLayer.Interfaces;
+using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public class PodcastRepository : IPodcastRepository
+    public class EpisodeRepository : IEpisodeRepository
     {
-        public PodcastRepository() { 
-       
+        public EpisodeRepository() { 
+        
         }
 
-        public void CreatePodcast(Podcast model)
+        public void CreateEpisode()
         {
             throw new NotImplementedException();
         }
 
-        public void DeletePodcast(Podcast model)
+        public void DeleteEpisode()
         {
             throw new NotImplementedException();
         }
 
-        public void UpdatePodcast(Podcast model)
+        public void UpdateEpisode()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Podcast> GetAllPodcasts()
+        public IEnumerable<Episodes> GetAllEpisodesFromPodcast(Guid podcastId)
         {
             throw new NotImplementedException();
         }
