@@ -1,4 +1,6 @@
-﻿namespace DataAccessLayer
+﻿using System.IO.Enumeration;
+
+namespace DataAccessLayer
 {
 
     //Denna klass ska hantera användarens datafil (XML Serializer etc).

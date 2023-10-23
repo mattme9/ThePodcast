@@ -6,8 +6,21 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    internal interface ICategoryRepository
+    public interface ICategoryRepository
     {
+        public void addCategory()
+        {
 
+        }
+
+        public void removeCategory()
+        {
+
+        }
+
+        public void SaveCategory()
+        {
+
+        }
     }
 }

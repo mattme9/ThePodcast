@@ -36,7 +36,7 @@
             btnDelete = new Button();
             btnChange = new Button();
             listPoddar = new ListBox();
-            textBox1 = new TextBox();
+            podcastNameTxt = new TextBox();
             lblName = new Label();
             episodeListBox = new ListBox();
             episodeListLbl = new Label();
@@ -44,7 +44,7 @@
             deleteCategoryBtn = new Button();
             addCategoryBtn = new Button();
             modifyCategoryLbl = new Label();
-            textBox3 = new TextBox();
+            categoryNameTxt = new TextBox();
             categoryListBox = new ListBox();
             SuspendLayout();
             // 
@@ -128,13 +128,13 @@
             listPoddar.Size = new Size(477, 452);
             listPoddar.TabIndex = 7;
             // 
-            // textBox1
+            // podcastNameTxt
             // 
-            textBox1.Location = new Point(224, 208);
-            textBox1.Margin = new Padding(5);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(272, 39);
-            textBox1.TabIndex = 8;
+            podcastNameTxt.Location = new Point(224, 208);
+            podcastNameTxt.Margin = new Padding(5);
+            podcastNameTxt.Name = "podcastNameTxt";
+            podcastNameTxt.Size = new Size(272, 39);
+            podcastNameTxt.TabIndex = 8;
             // 
             // lblName
             // 
@@ -208,13 +208,13 @@
             modifyCategoryLbl.TabIndex = 13;
             modifyCategoryLbl.Text = "Category:";
             // 
-            // textBox3
+            // categoryNameTxt
             // 
-            textBox3.Location = new Point(1106, 125);
-            textBox3.Margin = new Padding(5);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(477, 39);
-            textBox3.TabIndex = 12;
+            categoryNameTxt.Location = new Point(1106, 125);
+            categoryNameTxt.Margin = new Padding(5);
+            categoryNameTxt.Name = "categoryNameTxt";
+            categoryNameTxt.Size = new Size(477, 39);
+            categoryNameTxt.TabIndex = 12;
             // 
             // categoryListBox
             // 
@@ -235,11 +235,11 @@
             Controls.Add(deleteCategoryBtn);
             Controls.Add(addCategoryBtn);
             Controls.Add(modifyCategoryLbl);
-            Controls.Add(textBox3);
+            Controls.Add(categoryNameTxt);
             Controls.Add(episodeListLbl);
             Controls.Add(episodeListBox);
             Controls.Add(lblName);
-            Controls.Add(textBox1);
+            Controls.Add(podcastNameTxt);
             Controls.Add(listPoddar);
             Controls.Add(btnChange);
             Controls.Add(btnDelete);
@@ -265,7 +265,7 @@
         private Button btnDelete;
         private Button btnChange;
         private ListBox listPoddar;
-        private TextBox textBox1;
+        private TextBox podcastNameTxt;
         private Label lblName;
         private ListBox episodeListBox;
         private Label episodeListLbl;
@@ -273,7 +273,7 @@
         private Button deleteCategoryBtn;
         private Button addCategoryBtn;
         private Label modifyCategoryLbl;
-        private TextBox textBox3;
+        private TextBox categoryNameTxt;
         private ListBox categoryListBox;
     }
 }
