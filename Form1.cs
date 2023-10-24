@@ -1,3 +1,4 @@
+using BusinessLayer;
 using BusinessLayer.Controller;
 using DataAccessLayer.Models;
 
@@ -5,8 +6,9 @@ namespace ThePodcast
 {
     public partial class Form1 : Form
     {
-        Validation validation = new Validation();
+        private Validation validation = new Validation();
         private CategoryController categoryController = new CategoryController();
+        private PodcastController podcastController = new PodcastController();
 
         public Form1()
         {
@@ -92,7 +94,17 @@ namespace ThePodcast
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (validation.checkIfEmpty(txtUrl.Text))
+            {
+                string url = txtUrl.Text;
+                List<Podcast> podLista = podcastController.FetchPodsByURL(url);
+                foreach(Podcast pod in podLista)
+                {
+                    listPoddar.Items.Add(pod.Title);
+                }
 
+            }
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
