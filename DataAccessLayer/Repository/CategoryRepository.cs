@@ -17,17 +17,27 @@ namespace DataAccessLayer.Repository
 
         public void removeCategory(string cat)
         {
-            List<Category> list = new List<Category>();
-            using (FileStream fs = new FileStream("filename.txt", FileMode.Open, FileAccess.ReadWrite))
+            List<Category> list = GetAllCategories(); //Hämtar den nuvarande listan
+            List<Category> newCats = new List<Category>(); //Den kommande uppdaterade listan
+            using (FileStream fs = new FileStream("filename.txt", FileMode.Append, FileAccess.ReadWrite))
             using (StreamWriter stream = new StreamWriter(fs))
             {
-                list = GetAllCategories();
-                foreach(Category category in list)
+                for(int i = 0; i < list.Count; i++)
                 {
-                    if(category.CategoryName == cat)
+                    if (list[i].CategoryName.Equals(cat))
                     {
-                        list.Remove(category);
+                        list.RemoveAt(i);
                     }
+                    else
+                    {
+                        newCats.Add(list[i]);
+                    }
+                }
+                fs.SetLength(0); //Borde rensa filen för att ersätta den med nya listan
+
+                foreach(Category category in newCats)
+                {
+                    stream.Write(category.CategoryName + ",");
                 }
                 //Fortsätt på detta och gör klart skiten. Kanske göra en metod som tar emot
                 //en lista och sparar ner alles. Auf Wiedersehen!
@@ -60,6 +70,8 @@ namespace DataAccessLayer.Repository
                     Category category = new Category(part);
                     categories.Add(category);
                 }
+                stream.Close();
+                fs.Close();
             } catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
