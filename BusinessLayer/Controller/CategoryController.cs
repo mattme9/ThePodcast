@@ -26,6 +26,11 @@ namespace BusinessLayer.Controller
         {
             catRepository.AddAndSaveCategory(category);
         }
+
+        public void removeCategory(string cat)
+        {
+            catRepository.removeCategory(cat);
+        }
         
     }
 }

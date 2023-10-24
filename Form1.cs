@@ -53,6 +53,7 @@ namespace ThePodcast
         private void deleteCategoryBtn_Click(object sender, EventArgs e)
         {
                string cat = categoryListBox.SelectedItem.ToString();
+            categoryController.removeCategory(cat);
                
         }
 
