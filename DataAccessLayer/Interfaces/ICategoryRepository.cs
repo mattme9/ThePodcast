@@ -11,6 +11,7 @@ namespace DataAccessLayer.Interfaces
     {
         void removeCategory(string cat);
         void AddAndSaveCategory(Category category);
+        void ChangeCategory(string oldCat, string newCat);
         List<Category> GetAllCategories();
     }
 }

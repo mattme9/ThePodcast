@@ -1,3 +1,4 @@
+using BusinessLayer;
 using BusinessLayer.Controller;
 using DataAccessLayer.Models;
 
@@ -5,8 +6,9 @@ namespace ThePodcast
 {
     public partial class Form1 : Form
     {
-        Validation validation = new Validation();
+        private Validation validation = new Validation();
         private CategoryController categoryController = new CategoryController();
+        private PodcastController podcastController = new PodcastController();
 
         public Form1()
         {
@@ -18,6 +20,7 @@ namespace ThePodcast
         private void fillCategories()
         {
             categoryListBox.Items.Clear();
+            boxCategory.Items.Clear();
             List<Category> categories = categoryController.getCategories();
             foreach (var category in categories)
             {
@@ -52,19 +55,56 @@ namespace ThePodcast
 
         private void deleteCategoryBtn_Click(object sender, EventArgs e)
         {
-               string cat = categoryListBox.SelectedItem.ToString();
-            categoryController.removeCategory(cat);
-               
+            if(categoryListBox.SelectedItem != null)
+            {
+                string cat = categoryListBox.SelectedItem.ToString();
+                categoryController.removeCategory(cat);
+                fillCategories();
+            }
+            else
+            {
+                MessageBox.Show("You must select a category to delete.");
+            }
         }
 
         private void changeCategoryBtn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (categoryListBox.SelectedItem != null)
+                {
+                    //Hämtar de gamla värdet
+                    string oldCat = categoryListBox.SelectedItem.ToString();
+                    //Hämtar de nya värdet
+                    string newCat = categoryNameTxt.Text;
+                    categoryController.changeCategoryName(oldCat, newCat);
+                    fillCategories();
+                }
+                else
+                {
+                    MessageBox.Show("You must select a category.");
+                }
+            } catch(Exception en)
+            {
+                Console.WriteLine(en.Message);
+            }
+            
 
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (validation.checkIfEmpty(txtUrl.Text))
+            {
+                string url = txtUrl.Text;
+                List<Podcast> podLista = podcastController.FetchPodsByURL(url);
+                foreach(Podcast pod in podLista)
+                {
+                    listPoddar.Items.Add(pod.Title);
+                }
 
+            }
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
