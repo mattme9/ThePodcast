@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//using System.ServiceModel.Syndication;
 
 namespace BusinessLayer.Controller
 {
@@ -30,6 +31,11 @@ namespace BusinessLayer.Controller
         public void removeCategory(string cat)
         {
             catRepository.removeCategory(cat);
+        }
+
+        public void changeCategoryName(string oldCat, string newCat)
+        {
+            catRepository.ChangeCategory(oldCat, newCat);
         }
         
     }

@@ -18,6 +18,7 @@ namespace ThePodcast
         private void fillCategories()
         {
             categoryListBox.Items.Clear();
+            boxCategory.Items.Clear();
             List<Category> categories = categoryController.getCategories();
             foreach (var category in categories)
             {
@@ -52,13 +53,40 @@ namespace ThePodcast
 
         private void deleteCategoryBtn_Click(object sender, EventArgs e)
         {
-               string cat = categoryListBox.SelectedItem.ToString();
-            categoryController.removeCategory(cat);
-               
+            if(categoryListBox.SelectedItem != null)
+            {
+                string cat = categoryListBox.SelectedItem.ToString();
+                categoryController.removeCategory(cat);
+                fillCategories();
+            }
+            else
+            {
+                MessageBox.Show("You must select a category to delete.");
+            }
         }
 
         private void changeCategoryBtn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (categoryListBox.SelectedItem != null)
+                {
+                    //Hämtar de gamla värdet
+                    string oldCat = categoryListBox.SelectedItem.ToString();
+                    //Hämtar de nya värdet
+                    string newCat = categoryNameTxt.Text;
+                    categoryController.changeCategoryName(oldCat, newCat);
+                    fillCategories();
+                }
+                else
+                {
+                    MessageBox.Show("You must select a category.");
+                }
+            } catch(Exception en)
+            {
+                Console.WriteLine(en.Message);
+            }
+            
 
         }
 

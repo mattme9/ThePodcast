@@ -2,6 +2,7 @@
 using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,38 +11,58 @@ namespace DataAccessLayer.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public void addCategory(Category category)
+        public void ChangeCategory(string oldCat, string newCat)
         {
+            List<Category> list = GetAllCategories();
+            List<Category> newList = new List<Category>();
 
+            foreach (Category category in list)
+            {
+                if (category.CategoryName.Equals(oldCat))
+                {
+                    category.CategoryName = newCat;
+                }
+                newList.Add(category);
+            }
+            using(FileStream fs = new FileStream("filename.txt", FileMode.Create, FileAccess.Write))
+            using(StreamWriter stream = new StreamWriter(fs))
+            {
+                for (int i = 0; i < newList.Count; i++)
+                {
+                    stream.Write(newList[i].CategoryName);
+                    if (i < newList.Count - 1)
+                    {
+                        stream.Write(",");
+                    }
+                }
+            } 
         }
 
         public void removeCategory(string cat)
         {
             List<Category> list = GetAllCategories(); //Hämtar den nuvarande listan
             List<Category> newCats = new List<Category>(); //Den kommande uppdaterade listan
-            using (FileStream fs = new FileStream("filename.txt", FileMode.Append, FileAccess.ReadWrite))
-            using (StreamWriter stream = new StreamWriter(fs))
-            {
-                for(int i = 0; i < list.Count; i++)
-                {
-                    if (list[i].CategoryName.Equals(cat))
-                    {
-                        list.RemoveAt(i);
-                    }
-                    else
-                    {
-                        newCats.Add(list[i]);
-                    }
-                }
-                fs.SetLength(0); //Borde rensa filen för att ersätta den med nya listan
 
-                foreach(Category category in newCats)
+                foreach (Category category in list)
                 {
-                    stream.Write(category.CategoryName + ",");
+                    if (!category.CategoryName.Equals(cat))
+                    {
+                        newCats.Add(category);
+                    }
                 }
-                //Fortsätt på detta och gör klart skiten. Kanske göra en metod som tar emot
-                //en lista och sparar ner alles. Auf Wiedersehen!
-            }
+                using (FileStream fs = new FileStream("filename.txt", FileMode.Create, FileAccess.Write))
+                using (StreamWriter stream = new StreamWriter(fs))
+                {
+
+                for (int i = 0; i < newCats.Count; i++)
+                {
+                    stream.Write(newCats[i].CategoryName);
+                    if (i < newCats.Count - 1)
+                    {
+                        stream.Write(",");
+                    }
+                }
+            }        
         }
 
         public void AddAndSaveCategory(Category category)
@@ -51,8 +72,6 @@ namespace DataAccessLayer.Repository
             {
                 stream.Write(category.CategoryName + ",");
             }
-
-
         }
 
         public List<Category> GetAllCategories()
@@ -75,13 +94,8 @@ namespace DataAccessLayer.Repository
             } catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                
             }
             return categories;
-
-
         }
-
-
     }
 }
