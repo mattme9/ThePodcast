@@ -38,12 +38,28 @@ namespace ThePodcast
         private void addCategoryBtn_Click(object sender, EventArgs e)
         {
             String input = categoryNameTxt.Text;
+            ComboBox comboBox = boxCategory;
+
+
+            List<String> currentCategories = new List<String>();
+
+            foreach (var item in boxCategory.Items)
+            {
+                currentCategories.Add(item.ToString());
+            }
 
             Boolean validated = validation.checkIfEmpty(input);
+            Boolean unique = validation.checkIfUnique(input, currentCategories);
+
+
             if (!validated)
             {
                 MessageBox.Show("Text field is empty.");
                 //Lägg till validering för dubblering
+            }
+            if (!unique)
+            {
+                MessageBox.Show("Category name is not unique");
             }
             else
             {
@@ -98,7 +114,7 @@ namespace ThePodcast
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (validation.checkIfEmpty(txtUrl.Text) && 
+            if (validation.checkIfEmpty(txtUrl.Text) &&
                 validation.checkIfEmpty(podcastNameTxt.Text) &&
                 validation.checkIfEmpty(boxCategory.SelectedItem.ToString()))
             {
@@ -110,7 +126,7 @@ namespace ThePodcast
                 //Podcast podcast = podcastController.FetchPodsByURL(url);
 
                 Podcast podcast = podcastController.CreatePodcast(url, podName, category);
-                
+
                 //Loopa igenom detta senare
                 int rowIndex = podcastGridView.Rows.Add();
                 podcastGridView.Rows[rowIndex].Cells["Episode"].Value = podcast.TotalEpisodes;
