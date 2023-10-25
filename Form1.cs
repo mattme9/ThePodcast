@@ -16,7 +16,7 @@ namespace ThePodcast
             fillCategories();
 
         }
-
+        //HEj
         private void fillCategories()
         {
             categoryListBox.Items.Clear();
