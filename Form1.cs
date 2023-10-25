@@ -27,7 +27,10 @@ namespace ThePodcast
                 boxCategory.Items.Add(category.CategoryName);
                 categoryListBox.Items.Add(category.CategoryName);
             }
-            boxCategory.SelectedIndex = 0;
+            if (boxCategory.Items.Count > 0)
+            {
+                boxCategory.SelectedIndex = 0;
+            }
         }
 
 
