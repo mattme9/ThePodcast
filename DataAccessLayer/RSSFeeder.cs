@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel.Syndication;
 using System.Xml;
+using System.Threading.Channels;
 
 namespace DataAccessLayer
 {
@@ -15,6 +16,19 @@ namespace DataAccessLayer
         public RSSFeeder()
         {
 
+        }
+
+        public Podcast FetchChannel(string url)
+        {
+            XmlReader xmlReader = XmlReader.Create(url);
+            SyndicationFeed sf = SyndicationFeed.Load(xmlReader);
+
+            Podcast podcast = new Podcast();
+
+            podcast.Title = sf.Title.Text;
+            podcast.Description = sf.Description.Text;
+
+            return podcast;
         }
 
         public List<Podcast> FetchRSS(string url)

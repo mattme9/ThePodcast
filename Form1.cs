@@ -55,7 +55,7 @@ namespace ThePodcast
 
         private void deleteCategoryBtn_Click(object sender, EventArgs e)
         {
-            if(categoryListBox.SelectedItem != null)
+            if (categoryListBox.SelectedItem != null)
             {
                 string cat = categoryListBox.SelectedItem.ToString();
                 categoryController.removeCategory(cat);
@@ -84,11 +84,12 @@ namespace ThePodcast
                 {
                     MessageBox.Show("You must select a category.");
                 }
-            } catch(Exception en)
+            }
+            catch (Exception en)
             {
                 Console.WriteLine(en.Message);
             }
-            
+
 
         }
 
@@ -97,14 +98,17 @@ namespace ThePodcast
             if (validation.checkIfEmpty(txtUrl.Text))
             {
                 string url = txtUrl.Text;
-                List<Podcast> podLista = podcastController.FetchPodsByURL(url);
-                foreach(Podcast pod in podLista)
-                {
-                    listPoddar.Items.Add(pod.Title);
-                }
+                Podcast podcast = podcastController.FetchPodsByURL(url);
+                //foreach (Podcast pod in podLista)
+                //{
+                int rowIndex = podcastGridView.Rows.Add();
+                podcastGridView.Rows[rowIndex].Cells["Title"].Value = podcast.Title;
+                podcastGridView.Rows[rowIndex].Cells["Category"].Value = boxCategory.SelectedItem;
+                //podcastGridView.Rows.Add(pod.Title);
+                //}
 
             }
-            
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

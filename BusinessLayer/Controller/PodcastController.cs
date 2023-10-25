@@ -15,9 +15,9 @@ namespace BusinessLayer
             feeder = new RSSFeeder();
         }
 
-        public List<Podcast> FetchPodsByURL(string url)
+        public Podcast FetchPodsByURL(string url)
         {
-            return feeder.FetchRSS(url);
+            return feeder.FetchChannel(url);
         }
 
         //public void createPodcast()

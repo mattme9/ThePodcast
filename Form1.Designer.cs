@@ -35,7 +35,6 @@
             btnAdd = new Button();
             btnDelete = new Button();
             btnChange = new Button();
-            listPoddar = new ListBox();
             podcastNameTxt = new TextBox();
             lblName = new Label();
             episodeListBox = new ListBox();
@@ -46,6 +45,12 @@
             modifyCategoryLbl = new Label();
             categoryNameTxt = new TextBox();
             categoryListBox = new ListBox();
+            podcastGridView = new DataGridView();
+            Episodes = new DataGridViewTextBoxColumn();
+            customName = new DataGridViewTextBoxColumn();
+            Title = new DataGridViewTextBoxColumn();
+            Category = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)podcastGridView).BeginInit();
             SuspendLayout();
             // 
             // txtUrl
@@ -119,16 +124,6 @@
             btnChange.UseVisualStyleBackColor = true;
             btnChange.Click += btnChange_Click;
             // 
-            // listPoddar
-            // 
-            listPoddar.FormattingEnabled = true;
-            listPoddar.ItemHeight = 32;
-            listPoddar.Location = new Point(20, 366);
-            listPoddar.Margin = new Padding(5);
-            listPoddar.Name = "listPoddar";
-            listPoddar.Size = new Size(477, 452);
-            listPoddar.TabIndex = 7;
-            // 
             // podcastNameTxt
             // 
             podcastNameTxt.Location = new Point(224, 208);
@@ -151,16 +146,16 @@
             // 
             episodeListBox.FormattingEnabled = true;
             episodeListBox.ItemHeight = 32;
-            episodeListBox.Location = new Point(583, 189);
+            episodeListBox.Location = new Point(873, 356);
             episodeListBox.Name = "episodeListBox";
-            episodeListBox.Size = new Size(442, 452);
+            episodeListBox.Size = new Size(360, 452);
             episodeListBox.TabIndex = 10;
             // 
             // episodeListLbl
             // 
             episodeListLbl.AutoSize = true;
             episodeListLbl.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            episodeListLbl.Location = new Point(693, 112);
+            episodeListLbl.Location = new Point(950, 237);
             episodeListLbl.Name = "episodeListLbl";
             episodeListLbl.Size = new Size(213, 65);
             episodeListLbl.TabIndex = 11;
@@ -168,7 +163,7 @@
             // 
             // changeCategoryBtn
             // 
-            changeCategoryBtn.Location = new Point(1431, 174);
+            changeCategoryBtn.Location = new Point(1564, 286);
             changeCategoryBtn.Margin = new Padding(5);
             changeCategoryBtn.Name = "changeCategoryBtn";
             changeCategoryBtn.Size = new Size(153, 46);
@@ -179,7 +174,7 @@
             // 
             // deleteCategoryBtn
             // 
-            deleteCategoryBtn.Location = new Point(1269, 174);
+            deleteCategoryBtn.Location = new Point(1402, 286);
             deleteCategoryBtn.Margin = new Padding(5);
             deleteCategoryBtn.Name = "deleteCategoryBtn";
             deleteCategoryBtn.Size = new Size(153, 46);
@@ -190,7 +185,7 @@
             // 
             // addCategoryBtn
             // 
-            addCategoryBtn.Location = new Point(1106, 174);
+            addCategoryBtn.Location = new Point(1239, 286);
             addCategoryBtn.Margin = new Padding(5);
             addCategoryBtn.Name = "addCategoryBtn";
             addCategoryBtn.Size = new Size(153, 46);
@@ -202,7 +197,7 @@
             // modifyCategoryLbl
             // 
             modifyCategoryLbl.AutoSize = true;
-            modifyCategoryLbl.Location = new Point(1106, 88);
+            modifyCategoryLbl.Location = new Point(1239, 200);
             modifyCategoryLbl.Margin = new Padding(5, 0, 5, 0);
             modifyCategoryLbl.Name = "modifyCategoryLbl";
             modifyCategoryLbl.Size = new Size(115, 32);
@@ -211,7 +206,7 @@
             // 
             // categoryNameTxt
             // 
-            categoryNameTxt.Location = new Point(1106, 125);
+            categoryNameTxt.Location = new Point(1239, 237);
             categoryNameTxt.Margin = new Padding(5);
             categoryNameTxt.Name = "categoryNameTxt";
             categoryNameTxt.Size = new Size(477, 39);
@@ -221,17 +216,57 @@
             // 
             categoryListBox.FormattingEnabled = true;
             categoryListBox.ItemHeight = 32;
-            categoryListBox.Location = new Point(1106, 240);
+            categoryListBox.Location = new Point(1240, 356);
             categoryListBox.Name = "categoryListBox";
-            categoryListBox.Size = new Size(477, 420);
+            categoryListBox.Size = new Size(477, 452);
             categoryListBox.TabIndex = 19;
             categoryListBox.SelectedIndexChanged += categoryListBox_SelectedIndexChanged;
+            // 
+            // podcastGridView
+            // 
+            podcastGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            podcastGridView.Columns.AddRange(new DataGridViewColumn[] { Episodes, customName, Title, Category });
+            podcastGridView.Location = new Point(12, 356);
+            podcastGridView.Name = "podcastGridView";
+            podcastGridView.RowHeadersWidth = 82;
+            podcastGridView.RowTemplate.Height = 41;
+            podcastGridView.Size = new Size(855, 452);
+            podcastGridView.TabIndex = 20;
+            // 
+            // Episodes
+            // 
+            Episodes.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Episodes.HeaderText = "Episodes";
+            Episodes.MinimumWidth = 10;
+            Episodes.Name = "Episodes";
+            // 
+            // customName
+            // 
+            customName.HeaderText = "Name";
+            customName.MinimumWidth = 10;
+            customName.Name = "customName";
+            customName.Width = 200;
+            // 
+            // Title
+            // 
+            Title.HeaderText = "Title";
+            Title.MinimumWidth = 10;
+            Title.Name = "Title";
+            Title.Width = 200;
+            // 
+            // Category
+            // 
+            Category.HeaderText = "Category";
+            Category.MinimumWidth = 10;
+            Category.Name = "Category";
+            Category.Width = 200;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1653, 848);
+            ClientSize = new Size(1728, 872);
+            Controls.Add(podcastGridView);
             Controls.Add(categoryListBox);
             Controls.Add(changeCategoryBtn);
             Controls.Add(deleteCategoryBtn);
@@ -242,7 +277,6 @@
             Controls.Add(episodeListBox);
             Controls.Add(lblName);
             Controls.Add(podcastNameTxt);
-            Controls.Add(listPoddar);
             Controls.Add(btnChange);
             Controls.Add(btnDelete);
             Controls.Add(btnAdd);
@@ -253,6 +287,7 @@
             Margin = new Padding(5);
             Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)podcastGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -266,7 +301,6 @@
         private Button btnAdd;
         private Button btnDelete;
         private Button btnChange;
-        private ListBox listPoddar;
         private TextBox podcastNameTxt;
         private Label lblName;
         private ListBox episodeListBox;
@@ -277,5 +311,10 @@
         private Label modifyCategoryLbl;
         private TextBox categoryNameTxt;
         private ListBox categoryListBox;
+        private DataGridView podcastGridView;
+        private DataGridViewTextBoxColumn Episodes;
+        private DataGridViewTextBoxColumn customName;
+        private DataGridViewTextBoxColumn Title;
+        private DataGridViewTextBoxColumn Category;
     }
 }
