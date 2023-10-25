@@ -104,6 +104,8 @@ namespace ThePodcast
                 int rowIndex = podcastGridView.Rows.Add();
                 podcastGridView.Rows[rowIndex].Cells["Title"].Value = podcast.Title;
                 podcastGridView.Rows[rowIndex].Cells["Category"].Value = boxCategory.SelectedItem;
+                podcastGridView.Rows[rowIndex].Cells["customName"].Value = podcastNameTxt.Text;
+
                 //podcastGridView.Rows.Add(pod.Title);
                 //}
 
