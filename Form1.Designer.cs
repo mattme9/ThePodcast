@@ -159,7 +159,7 @@
             episodeListLbl.Name = "episodeListLbl";
             episodeListLbl.Size = new Size(213, 65);
             episodeListLbl.TabIndex = 11;
-            episodeListLbl.Text = "Episodes";
+            episodeListLbl.Text = "Episode";
             // 
             // changeCategoryBtn
             // 
@@ -236,9 +236,9 @@
             // Episodes
             // 
             Episodes.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Episodes.HeaderText = "Episodes";
+            Episodes.HeaderText = "Episode";
             Episodes.MinimumWidth = 10;
-            Episodes.Name = "Episodes";
+            Episodes.Name = "Episode";
             // 
             // customName
             // 

@@ -12,6 +12,6 @@ namespace DataAccessLayer.Interfaces
         void CreateEpisode();
         void DeleteEpisode();
         void UpdateEpisode();
-        public IEnumerable<Episodes> GetAllEpisodesFromPodcast(Guid podcastId);
+        public IEnumerable<Episode> GetAllEpisodesFromPodcast(Guid podcastId);
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.ServiceModel.Syndication;
 using System.Xml;
 using System.Threading.Channels;
+using System.Reflection;
 
 namespace DataAccessLayer
 {
@@ -18,39 +19,79 @@ namespace DataAccessLayer
 
         }
 
-        public Podcast FetchChannel(string url)
+        public Podcast GetPodcast(string url, string podcastName, string category)
         {
             XmlReader xmlReader = XmlReader.Create(url);
             SyndicationFeed sf = SyndicationFeed.Load(xmlReader);
 
-            Podcast podcast = new Podcast();
+            string title = sf.Title.Text;
+            string description = sf.Description.Text;
 
-            podcast.Title = sf.Title.Text;
-            podcast.Description = sf.Description.Text;
+            Category cat = new Category(category);
 
+            List<Episode> episodeList = getEpisodes(url);
+
+            int count = 0;
+            foreach (Episode episode in episodeList)
+            {
+                count++;
+            }
+
+            Podcast podcast = new Podcast(count, title, podcastName, url, cat, episodeList);
             return podcast;
         }
 
-        public List<Podcast> FetchRSS(string url)
+        public List<Episode> getEpisodes(string url)
+        {
+            List<Episode> itemList = new List<Episode>();
+
+            XmlReader xmlReader = XmlReader.Create(url);
+            SyndicationFeed sf = SyndicationFeed.Load(xmlReader);
+
+            foreach (SyndicationItem item in sf.Items)
+            {
+                string title = sf.Title.Text;
+                string desc = sf.Description.Text;
+                Episode episode = new Episode(title, desc);
+
+                itemList.Add(episode);
+            }
+
+            return itemList;
+        }
+
+
+
+
+        //Gamla metoder
+
+        /*
+        public Podcast FetchRSS(string url)
         {
             XmlReader xmlreader = XmlReader.Create(url);
             SyndicationFeed flow = SyndicationFeed.Load(xmlreader);
 
-            List<Podcast> podcastList = new List<Podcast>();
+            List<Episode> episodeList = new List<Episode>();
+            Podcast podcast = new Podcast();
+
+            //string title, string name, string description,
+            //string url, Category category, Guid id,
+            //IEnumerable <Episode> episodes
 
             foreach (SyndicationItem item in flow.Items)
             {
-                Podcast podcast = new Podcast();
+                Episode episode = new Episode();
 
-                podcast.Description = item.PublishDate.ToString();
-                podcast.Title = item.Title.Text;
+                episode.Description = item.PublishDate.ToString();
+                episode.Title = item.Title.Text;
 
-                podcastList.Add(podcast);
+                episodeList.Add(episode);
             }
 
-            return podcastList;
+            return episodeList;
 
         }
+        */
 
         //XmlReader xmlreader = new XmlReader
 
