@@ -17,7 +17,9 @@ namespace BusinessLayer.Controller
         {
             _episodesRepository = new EpisodeRepository();
         }
-        public List<Episodes> GetAllEpisodesInOrder(Guid podcastId)
+
+        /*
+        public List<Episode> GetAllEpisodesInOrder(Guid podcastId)
         {
             if (podcastId == null || podcastId == Guid.Empty)
             {
@@ -28,12 +30,13 @@ namespace BusinessLayer.Controller
 
             if (!episodes.Any())
             {
-                return new List<Episodes>();
+                return new List<Episode>();
             }
 
             var orderedPodcastListByName = episodes.OrderBy(podcast => podcast.Title).ToList();
 
             return orderedPodcastListByName;
         }
+        */
     }
 }

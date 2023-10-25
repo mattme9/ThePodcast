@@ -9,21 +9,25 @@ namespace DataAccessLayer.Models
 {
     public class Podcast
     {
-        public Guid Id { get; set; }
-        public IEnumerable<Episodes> Episodes { get; set; }
+        public string Url { get; set; }
+        public IEnumerable<Episode> Episodes { get; set; }
         public string Title { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
+        public int TotalEpisodes { get; set; }
         public Category Category { get; set; }
 
         public Podcast()
         {
 
         }
-        public Podcast(string title, string name, string description, Category category, Guid id, IEnumerable<Episodes> episodes)
+        public Podcast(int totalEpisodes, string title, string name, string url, Category category,  IEnumerable<Episode> episodes)
         {
-            Id = id;
+            Name = name;
+            Title = title;
+            Category = category;
+            TotalEpisodes = totalEpisodes;
             Episodes = episodes;
+            Url = url;
         }
     }
 }

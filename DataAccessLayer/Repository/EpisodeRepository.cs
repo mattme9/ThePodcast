@@ -29,7 +29,7 @@ namespace DataAccessLayer.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Episodes> GetAllEpisodesFromPodcast(Guid podcastId)
+        public IEnumerable<Episode> GetAllEpisodesFromPodcast(Guid podcastId)
         {
             throw new NotImplementedException();
         }

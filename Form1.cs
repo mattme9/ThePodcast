@@ -95,17 +95,25 @@ namespace ThePodcast
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (validation.checkIfEmpty(txtUrl.Text))
+            if (validation.checkIfEmpty(txtUrl.Text) && 
+                validation.checkIfEmpty(podcastNameTxt.Text) &&
+                validation.checkIfEmpty(boxCategory.SelectedItem.ToString()))
             {
+
                 string url = txtUrl.Text;
-                Podcast podcast = podcastController.FetchPodsByURL(url);
-                //foreach (Podcast pod in podLista)
-                //{
+                string podName = podcastNameTxt.Text;
+                string category = boxCategory.SelectedItem.ToString();
+
+                //Podcast podcast = podcastController.FetchPodsByURL(url);
+
+                Podcast podcast = podcastController.CreatePodcast(url, podName, category);
+                
+                //Loopa igenom detta senare
                 int rowIndex = podcastGridView.Rows.Add();
+                podcastGridView.Rows[rowIndex].Cells["Episode"].Value = podcast.TotalEpisodes;
                 podcastGridView.Rows[rowIndex].Cells["Title"].Value = podcast.Title;
-                podcastGridView.Rows[rowIndex].Cells["Category"].Value = boxCategory.SelectedItem;
-                //podcastGridView.Rows.Add(pod.Title);
-                //}
+                podcastGridView.Rows[rowIndex].Cells["Category"].Value = podcast.Category;
+                podcastGridView.Rows[rowIndex].Cells["customName"].Value = podcast.Name;
 
             }
 
