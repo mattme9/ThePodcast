@@ -1,6 +1,7 @@
 using BusinessLayer;
 using BusinessLayer.Controller;
 using DataAccessLayer.Models;
+using System.Windows.Forms;
 
 namespace ThePodcast
 {
@@ -9,6 +10,8 @@ namespace ThePodcast
         private Validation validation = new Validation();
         private CategoryController categoryController = new CategoryController();
         private PodcastController podcastController = new PodcastController();
+        private List<Podcast> podcasts = new List<Podcast>();
+        private Podcast thisPodcast;
 
         public Form1()
         {
@@ -27,7 +30,10 @@ namespace ThePodcast
                 boxCategory.Items.Add(category.CategoryName);
                 categoryListBox.Items.Add(category.CategoryName);
             }
-            boxCategory.SelectedIndex = 0;
+            if (boxCategory.Items.Count > 0)
+            {
+                boxCategory.SelectedIndex = 0;
+            }
         }
 
 
@@ -95,7 +101,7 @@ namespace ThePodcast
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (validation.checkIfEmpty(txtUrl.Text) && 
+            if (validation.checkIfEmpty(txtUrl.Text) &&
                 validation.checkIfEmpty(podcastNameTxt.Text) &&
                 validation.checkIfEmpty(boxCategory.SelectedItem.ToString()))
             {
@@ -107,12 +113,15 @@ namespace ThePodcast
                 //Podcast podcast = podcastController.FetchPodsByURL(url);
 
                 Podcast podcast = podcastController.CreatePodcast(url, podName, category);
-                
+                podcasts.Add(podcast);
+                //Sparar data på datorn
+                podcastController.SavePodcastListToXML(podcasts);
+
                 //Loopa igenom detta senare
                 int rowIndex = podcastGridView.Rows.Add();
                 podcastGridView.Rows[rowIndex].Cells["Episode"].Value = podcast.TotalEpisodes;
                 podcastGridView.Rows[rowIndex].Cells["Title"].Value = podcast.Title;
-                podcastGridView.Rows[rowIndex].Cells["Category"].Value = podcast.Category;
+                podcastGridView.Rows[rowIndex].Cells["Category"].Value = podcast.Category.CategoryName;
                 podcastGridView.Rows[rowIndex].Cells["customName"].Value = podcast.Name;
 
             }
@@ -134,6 +143,51 @@ namespace ThePodcast
             if (categoryListBox.SelectedItem != null)
             {
                 categoryNameTxt.Text = categoryListBox.SelectedItem.ToString();
+            }
+        }
+
+        private void podcastGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            episodeListBox.Items.Clear();
+            if (podcastGridView.SelectedRows.Count > 0)
+            {
+                string title = podcastGridView.SelectedRows[0].Cells["Title"].Value.ToString();
+
+                //episodeListBox.Items.Add(cellValue);
+
+                foreach (Podcast poo in podcasts)
+                {
+                    if (poo.Title.Equals(title))
+                    {
+                        foreach (Episode ep in poo.Episodes)
+                        {
+                            episodeListBox.Items.Add(ep.Title);
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private void episodeListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            summaryBox.Items.Clear();
+
+            string title = podcastGridView.SelectedRows[0].Cells["Title"].Value.ToString();
+            string episode = episodeListBox.SelectedItem.ToString();
+
+            foreach (Podcast poo in podcasts)
+            {
+                if (poo.Title.Equals(title))
+                {
+                    foreach (Episode ep in poo.Episodes)
+                    {
+                        if (ep.Title.Equals(episode))
+                        {
+                            summaryBox.Items.Add(ep.Description);
+                        }
+                    }
+                }
             }
         }
     }
