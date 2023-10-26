@@ -1,6 +1,7 @@
 using BusinessLayer;
 using BusinessLayer.Controller;
 using DataAccessLayer.Models;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace ThePodcast
@@ -163,6 +164,10 @@ namespace ThePodcast
                 podcastGridView.Rows[rowIndex].Cells["customName"].Value = podcast.Name;
 
             }
+            else
+            {
+                MessageBox.Show("Error! Något fält är tomt.");
+            }
 
         }
 
@@ -194,6 +199,32 @@ namespace ThePodcast
 
         private void btnChange_Click(object sender, EventArgs e)
         {
+            //Få namnet att dyka upp i Namn-box vid klick
+            //Hämta vald namn i datagridview
+            string name = podcastGridView.SelectedRows[0].Cells["customName"].Value.ToString();
+            string newName = podcastNameTxt.Text;
+            string newCat = boxCategory.SelectedItem.ToString();
+            //foreach leta upp titel i podcasts och byt värde på pod.Name
+            if (validation.checkIfEmpty(newName))
+            {
+                foreach (Podcast pod in podcasts)
+                {
+                    if (pod.Name.Equals(name))
+                    {
+                        pod.Name = newName;
+                        pod.Category.CategoryName = newCat;
+                    }
+                }
+                podcastController.SavePodcastListToXML(podcasts);
+                fillPodcasts();
+            }
+            else
+            {
+                MessageBox.Show("Name can not be empty.");
+            }
+            
+            //podcastController.SavePodcastListToXML(podcasts)
+            
 
         }
 
@@ -218,6 +249,7 @@ namespace ThePodcast
                 {
                     if (poo.Title.Equals(title))
                     {
+                        podcastNameTxt.Text = poo.Name;
                         foreach (Episode ep in poo.Episodes)
                         {
                             episodeListBox.Items.Add(ep.Title);
