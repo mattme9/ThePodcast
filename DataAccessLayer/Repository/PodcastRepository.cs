@@ -14,22 +14,27 @@ namespace DataAccessLayer.Repository
        
         }
 
-        public void CreatePodcast(Podcast model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeletePodcast(Podcast model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdatePodcast(Podcast model)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Podcast> GetAllPodcasts()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPodcastRepository.CreatePodcast(Podcast model)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPodcastRepository.UpdatePodcast(Podcast model)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPodcastRepository.DeletePodcast(Podcast model)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPodcastRepository.SavePodcastListToXML(List<Podcast> list)
         {
             throw new NotImplementedException();
         }

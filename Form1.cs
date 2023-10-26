@@ -1,6 +1,7 @@
 using BusinessLayer;
 using BusinessLayer.Controller;
 using DataAccessLayer.Models;
+using System.Windows.Forms;
 
 namespace ThePodcast
 {
@@ -9,14 +10,30 @@ namespace ThePodcast
         private Validation validation = new Validation();
         private CategoryController categoryController = new CategoryController();
         private PodcastController podcastController = new PodcastController();
+        private List<Podcast> podcasts = new List<Podcast>();
+        private Podcast thisPodcast;
 
         public Form1()
         {
             InitializeComponent();
             fillCategories();
-
+            fillPodcasts();
         }
-        //HEj
+
+        private void fillPodcasts()
+        {
+            podcastGridView.Rows.Clear();
+            podcasts = podcastController.GetPodcastListFromXML();
+
+            foreach(Podcast podcast in podcasts)
+            {
+                int rowIndex = podcastGridView.Rows.Add();
+                podcastGridView.Rows[rowIndex].Cells["Episode"].Value = podcast.TotalEpisodes;
+                podcastGridView.Rows[rowIndex].Cells["Title"].Value = podcast.Title;
+                podcastGridView.Rows[rowIndex].Cells["Category"].Value = podcast.Category.CategoryName;
+                podcastGridView.Rows[rowIndex].Cells["customName"].Value = podcast.Name;
+            }
+        }
         private void fillCategories()
         {
             categoryListBox.Items.Clear();
@@ -42,6 +59,11 @@ namespace ThePodcast
 
 
             List<String> currentCategories = new List<String>();
+
+            foreach (var item in boxCategory.Items)
+            {
+                currentCategories.Add(item.ToString());
+            }
 
             foreach (var item in boxCategory.Items)
             {
@@ -76,13 +98,22 @@ namespace ThePodcast
         {
             if (categoryListBox.SelectedItem != null)
             {
-                string cat = categoryListBox.SelectedItem.ToString();
-                categoryController.removeCategory(cat);
-                fillCategories();
+                DialogResult result = MessageBox.Show("Are you sure you want to delete the category?", "Confirmation window", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    string cat = categoryListBox.SelectedItem.ToString();
+                    categoryController.removeCategory(cat);
+                    fillCategories();
+                }
+                else if (result == DialogResult.No)
+                {
+
+                }
             }
             else
             {
-                MessageBox.Show("You must select a category to delete.");
+                MessageBox.Show("No category selected.");
             }
         }
 
@@ -126,12 +157,14 @@ namespace ThePodcast
                 //Podcast podcast = podcastController.FetchPodsByURL(url);
 
                 Podcast podcast = podcastController.CreatePodcast(url, podName, category);
+                podcasts.Add(podcast);
+                //Sparar data på datorn
+                podcastController.SavePodcastListToXML(podcasts);
 
-                //Loopa igenom detta senare
                 int rowIndex = podcastGridView.Rows.Add();
                 podcastGridView.Rows[rowIndex].Cells["Episode"].Value = podcast.TotalEpisodes;
                 podcastGridView.Rows[rowIndex].Cells["Title"].Value = podcast.Title;
-                podcastGridView.Rows[rowIndex].Cells["Category"].Value = podcast.Category;
+                podcastGridView.Rows[rowIndex].Cells["Category"].Value = podcast.Category.CategoryName;
                 podcastGridView.Rows[rowIndex].Cells["customName"].Value = podcast.Name;
 
             }
@@ -140,7 +173,28 @@ namespace ThePodcast
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            if (podcastGridView.SelectedRows.Count > 0)
+            {
+                string title = podcastGridView.SelectedRows[0].Cells["Title"].Value.ToString();
+                DataGridViewRow selectedRow = podcastGridView.SelectedRows[0];
+                podcastGridView.Rows.Remove(selectedRow);
+                foreach(Podcast pod in podcasts)
+                {
+                    if (pod.Title.Equals(title))
+                    {
+                        podcasts.Remove(pod);
+                        podcastController.SavePodcastListToXML(podcasts);
+                        episodeListBox.Items.Clear();
+                        break;
+                    }
+                }
+                fillPodcasts();
+            }
+            else
+            {
+                MessageBox.Show("No row selected. Please select a row to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         private void btnChange_Click(object sender, EventArgs e)
@@ -153,6 +207,51 @@ namespace ThePodcast
             if (categoryListBox.SelectedItem != null)
             {
                 categoryNameTxt.Text = categoryListBox.SelectedItem.ToString();
+            }
+        }
+
+        private void podcastGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            episodeListBox.Items.Clear();
+            if (podcastGridView.SelectedRows.Count > 0)
+            {
+                string title = podcastGridView.SelectedRows[0].Cells["Title"].Value.ToString();
+
+                //episodeListBox.Items.Add(cellValue);
+
+                foreach (Podcast poo in podcasts)
+                {
+                    if (poo.Title.Equals(title))
+                    {
+                        foreach (Episode ep in poo.Episodes)
+                        {
+                            episodeListBox.Items.Add(ep.Title);
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private void episodeListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            summaryBox.Items.Clear();
+
+            string title = podcastGridView.SelectedRows[0].Cells["Title"].Value.ToString();
+            string episode = episodeListBox.SelectedItem.ToString();
+
+            foreach (Podcast poo in podcasts)
+            {
+                if (poo.Title.Equals(title))
+                {
+                    foreach (Episode ep in poo.Episodes)
+                    {
+                        if (ep.Title.Equals(episode))
+                        {
+                            summaryBox.Items.Add(ep.Description);
+                        }
+                    }
+                }
             }
         }
     }

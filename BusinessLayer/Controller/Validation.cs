@@ -30,21 +30,20 @@ namespace BusinessLayer.Controller
         {
             Boolean unique = true;
             int i = 0;
-            
-            while (i < currentCategories.Count() )
+
+            while (i < currentCategories.Count())
             {
                 if (currentCategories.Contains(input))
                 {
                     unique = false;
+                    return unique;
                 }
                 i++;
             }
-            
+
 
             return unique;
 
         }
-
-        
     }
 }

@@ -14,6 +14,7 @@ namespace DataAccessLayer.Repository
         public void CreatePodcast(Podcast model);
         public void UpdatePodcast(Podcast model);
         public void DeletePodcast(Podcast model);
+        public void SavePodcastListToXML(List<Podcast> list);
         // public IEnumerable<Podcast> GetAllPodcasts();
     }
 }

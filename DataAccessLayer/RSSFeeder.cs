@@ -50,9 +50,9 @@ namespace DataAccessLayer
 
             foreach (SyndicationItem item in sf.Items)
             {
-                string title = sf.Title.Text;
-                string desc = sf.Description.Text;
-                Episode episode = new Episode(title, desc);
+                string title = item.Title.Text;
+                string summary = item.Summary.Text;
+                Episode episode = new Episode(title, summary);
 
                 itemList.Add(episode);
             }

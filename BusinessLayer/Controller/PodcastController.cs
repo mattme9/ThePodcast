@@ -9,6 +9,7 @@ namespace BusinessLayer
     {
         private readonly IPodcastRepository _podcastRepository;
         RSSFeeder feeder = new RSSFeeder();
+        DataManager dataManager = new DataManager();
         public PodcastController() 
         { 
             _podcastRepository = new PodcastRepository();
@@ -18,6 +19,16 @@ namespace BusinessLayer
         public Podcast CreatePodcast(string url, string podName, string category)
         {
             return feeder.GetPodcast(url, podName, category);
+        }
+
+        public void SavePodcastListToXML(List<Podcast> podcastList)
+        {
+            dataManager.SavePodcastData(podcastList);
+        }
+
+        public List<Podcast> GetPodcastListFromXML()
+        {
+            return dataManager.GetPodcastData();
         }
 
         //public void createPodcast()
