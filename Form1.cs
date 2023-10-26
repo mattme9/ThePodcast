@@ -41,12 +41,28 @@ namespace ThePodcast
         private void addCategoryBtn_Click(object sender, EventArgs e)
         {
             String input = categoryNameTxt.Text;
+            ComboBox comboBox = boxCategory;
+
+
+            List<String> currentCategories = new List<String>();
+
+            foreach (var item in boxCategory.Items)
+            {
+                currentCategories.Add(item.ToString());
+            }
 
             Boolean validated = validation.checkIfEmpty(input);
+            Boolean unique = validation.checkIfUnique(input, currentCategories);
+
+
             if (!validated)
             {
                 MessageBox.Show("Text field is empty.");
                 //Lägg till validering för dubblering
+            }
+            if (!unique)
+            {
+                MessageBox.Show("Category name is not unique");
             }
             else
             {
@@ -61,6 +77,7 @@ namespace ThePodcast
 
         private void deleteCategoryBtn_Click(object sender, EventArgs e)
         {
+            
             if (categoryListBox.SelectedItem != null)
             {
                 string cat = categoryListBox.SelectedItem.ToString();

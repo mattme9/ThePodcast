@@ -23,5 +23,24 @@ namespace BusinessLayer.Controller
             return false;
             
         }
+
+        public Boolean checkIfUnique(string input, List<string> currentCategories)
+        {
+            Boolean unique = true;
+            int i = 0;
+
+            while (i < currentCategories.Count())
+            {
+                if (currentCategories.Contains(input))
+                {
+                    unique = false;
+                }
+                i++;
+            }
+
+
+            return unique;
+
+        }
     }
 }
