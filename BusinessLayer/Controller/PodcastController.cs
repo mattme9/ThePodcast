@@ -26,6 +26,11 @@ namespace BusinessLayer
             dataManager.SavePodcastData(podcastList);
         }
 
+        public List<Podcast> GetPodcastListFromXML()
+        {
+            return dataManager.GetPodcastData();
+        }
+
         //public void createPodcast()
 
        

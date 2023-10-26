@@ -34,6 +34,7 @@ namespace BusinessLayer.Controller
                 if (currentCategories.Contains(input))
                 {
                     unique = false;
+                    return unique;
                 }
                 i++;
             }

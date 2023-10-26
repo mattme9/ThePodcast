@@ -16,6 +16,8 @@ namespace DataAccessLayer
             FileStream fs = new FileStream("data.xml", FileMode.Create, FileAccess.Write);
 
             xmlSerializer.Serialize(fs, podcastList);
+            fs.Close();
+
         }
 
         public List<Podcast> GetPodcastData()
@@ -25,6 +27,7 @@ namespace DataAccessLayer
             FileStream fs = new FileStream("data.xml", FileMode.Open, FileAccess.Read);
 
             podcasts = (List<Podcast>)xmlSerializer.Deserialize(fs);
+            fs.Close();
             return podcasts;
         }
     }
