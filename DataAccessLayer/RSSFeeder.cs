@@ -8,6 +8,7 @@ using System.ServiceModel.Syndication;
 using System.Xml;
 using System.Threading.Channels;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace DataAccessLayer
 {
@@ -60,7 +61,24 @@ namespace DataAccessLayer
             return itemList;
         }
 
+        public static bool URLisRSS(string url)
+        {
+            try
+            {
+                SyndicationFeed aFeed = SyndicationFeed.Load(XmlReader.Create(url));
 
+                foreach (SyndicationItem item in aFeed.Items)
+                {
+                    Debug.Print(item.Title.Text);
+                }
+                return true;
+            }
+            catch (Exception)
+            {   
+                return false;
+            }
+
+        }
 
 
         //Gamla metoder

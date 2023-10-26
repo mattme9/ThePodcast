@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccessLayer;
 
 
 
@@ -10,15 +11,18 @@ namespace BusinessLayer.Controller
 {
     public class Validation
     {
-        public Boolean checkIfEmpty(string input)
+        public Boolean CheckIfEmpty(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
-            { return false; }
-            else 
-            { return true; }
+            {
+                return true; 
+            }
+            
+             return false; 
+            
         }
 
-        public Boolean checkIfCategoryExists(string input)
+        public Boolean CheckIfCategoryExists(string input)
         {
             //loopa igenom lista där vi sparat kategorier
             //kolla om kategori finns
@@ -26,7 +30,7 @@ namespace BusinessLayer.Controller
             
         }
 
-        public Boolean checkIfUnique(string input, List<string> currentCategories)
+        public Boolean CheckIfUnique(string input, List<string> currentCategories)
         {
             Boolean unique = true;
             int i = 0;
@@ -45,5 +49,12 @@ namespace BusinessLayer.Controller
             return unique;
 
         }
+
+        public Boolean URLisValid(string url)
+        {
+
+            return RSSFeeder.URLisRSS(url);
+        }
     }
+
 }

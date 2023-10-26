@@ -18,7 +18,7 @@ namespace BusinessLayer
 
         public Podcast CreatePodcast(string url, string podName, string category)
         {
-                validation.checkValidUrl(url);
+                
                 return feeder.GetPodcast(url, podName, category);  
         }
 

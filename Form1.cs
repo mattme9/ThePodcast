@@ -71,8 +71,8 @@ namespace ThePodcast
                 currentCategories.Add(item.ToString());
             }
 
-            Boolean validated = validation.checkIfEmpty(input);
-            Boolean unique = validation.checkIfUnique(input, currentCategories);
+            Boolean validated = !validation.CheckIfEmpty(input);
+            Boolean unique = validation.CheckIfUnique(input, currentCategories);
 
 
             if (!validated)
@@ -146,10 +146,21 @@ namespace ThePodcast
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (validation.checkIfEmpty(txtUrl.Text) &&
-                validation.checkIfEmpty(podcastNameTxt.Text) &&
-                validation.checkIfEmpty(boxCategory.SelectedItem.ToString()))
+            
+
+
+            if (!validation.CheckIfEmpty(txtUrl.Text) &&
+                !validation.CheckIfEmpty(podcastNameTxt.Text) &&
+                !validation.CheckIfEmpty(boxCategory.SelectedItem.ToString()))
+
+                
+                
             {
+                if (!validation.URLisValid(txtUrl.Text))
+                {
+                    MessageBox.Show("There is a problem with your URL");
+                    return;
+                }
 
                 string url = txtUrl.Text;
                 string podName = podcastNameTxt.Text;
@@ -210,7 +221,7 @@ namespace ThePodcast
             string newName = podcastNameTxt.Text;
             string newCat = boxCategory.SelectedItem.ToString();
             //foreach leta upp titel i podcasts och byt värde på pod.Name
-            if (validation.checkIfEmpty(newName))
+            if (!validation.CheckIfEmpty(newName))
             {
                 foreach (Podcast pod in podcasts)
                 {
