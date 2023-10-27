@@ -50,6 +50,8 @@ namespace BusinessLayer.Controller
         {
             return !currentCategories.Any(category => category.Equals(input));
         }
+
+
         public Boolean URLisValid(string url)
         {
 
