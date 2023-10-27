@@ -34,6 +34,8 @@ namespace ThePodcast
                 podcastGridView.Rows[rowIndex].Cells["Category"].Value = podcast.Category.CategoryName;
                 podcastGridView.Rows[rowIndex].Cells["customName"].Value = podcast.Name;
             }
+
+
         }
         private void fillCategories()
         {
@@ -144,9 +146,10 @@ namespace ThePodcast
         {
 
             List<string> currentPodcastNames = podcasts.Select(podcast => podcast.Name).ToList();
-         
+            List<string> currentPodcastTitles = podcasts.Select(podcast => podcast.Title).ToList();
+
             string podcastName = podcastNameTxt.Text;
-            
+
 
             if (validation.CheckIfEmpty(txtUrl.Text) ||
                 validation.CheckIfEmpty(podcastNameTxt.Text) ||
@@ -160,7 +163,7 @@ namespace ThePodcast
                 MessageBox.Show("There is a problem with your URL");
                 return;
             }
-            string podcastName = podcastNameTxt.Text;
+
             if (!validation.CheckIfUnique(podcastName, currentPodcastNames))
             {
                 MessageBox.Show("This name already exists");
