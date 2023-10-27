@@ -26,7 +26,7 @@ namespace ThePodcast
             podcastGridView.Rows.Clear();
             podcasts = podcastController.GetPodcastListFromXML();
 
-            foreach(Podcast podcast in podcasts)
+            foreach (Podcast podcast in podcasts)
             {
                 int rowIndex = podcastGridView.Rows.Add();
                 podcastGridView.Rows[rowIndex].Cells["Episode"].Value = podcast.TotalEpisodes;
@@ -59,20 +59,16 @@ namespace ThePodcast
             ComboBox comboBox = boxCategory;
 
 
-            List<String> currentCategories = new List<String>();
+            List<String> currentItems = new List<String>();
 
             foreach (var item in boxCategory.Items)
             {
-                currentCategories.Add(item.ToString());
+                currentItems.Add(item.ToString());
             }
 
-            foreach (var item in boxCategory.Items)
-            {
-                currentCategories.Add(item.ToString());
-            }
 
             Boolean validated = !validation.CheckIfEmpty(input);
-            Boolean unique = validation.CheckIfUnique(input, currentCategories);
+            Boolean unique = validation.CheckIfUnique(input, currentItems);
 
 
             if (!validated)
@@ -146,46 +142,44 @@ namespace ThePodcast
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
+        
+            List<string> currentPodcastNames = podcasts.Select(podcast => podcast.Name).ToList();
 
-
-            if (!validation.CheckIfEmpty(txtUrl.Text) &&
-                !validation.CheckIfEmpty(podcastNameTxt.Text) &&
-                !validation.CheckIfEmpty(boxCategory.SelectedItem.ToString()))
-
-                
-                
-            {
-                if (!validation.URLisValid(txtUrl.Text))
-                {
-                    MessageBox.Show("There is a problem with your URL");
-                    return;
-                }
-
-                string url = txtUrl.Text;
-                string podName = podcastNameTxt.Text;
-                string category = boxCategory.SelectedItem.ToString();
-
-                //Podcast podcast = podcastController.FetchPodsByURL(url);
-
-                Podcast podcast = podcastController.CreatePodcast(url, podName, category);
-                podcasts.Add(podcast);
-                //Sparar data på datorn
-                podcastController.SavePodcastListToXML(podcasts);
-
-                int rowIndex = podcastGridView.Rows.Add();
-                podcastGridView.Rows[rowIndex].Cells["Episode"].Value = podcast.TotalEpisodes;
-                podcastGridView.Rows[rowIndex].Cells["Title"].Value = podcast.Title;
-                podcastGridView.Rows[rowIndex].Cells["Category"].Value = podcast.Category.CategoryName;
-                podcastGridView.Rows[rowIndex].Cells["customName"].Value = podcast.Name;
-
-            }
-            else
+            if (validation.CheckIfEmpty(txtUrl.Text) ||
+                validation.CheckIfEmpty(podcastNameTxt.Text) ||
+                validation.CheckIfEmpty(boxCategory.SelectedItem?.ToString()))
             {
                 MessageBox.Show("Error! Något fält är tomt.");
-            }
+                return;
+            }            
+            if (!validation.URLisValid(txtUrl.Text))
+            {
+                MessageBox.Show("There is a problem with your URL");
+                return;
+            }   
+            string podcastName = podcastNameTxt.Text;
+            if (!validation.CheckIfUnique(podcastName, currentPodcastNames))
+            {
+                MessageBox.Show("This name already exists");
+                return;
+            }            
+            string url = txtUrl.Text;
+            string category = boxCategory.SelectedItem.ToString();
+            Podcast podcast = podcastController.CreatePodcast(url, podcastName, category);
+            podcasts.Add(podcast);
 
+            
+            podcastController.SavePodcastListToXML(podcasts);
+
+            int rowIndex = podcastGridView.Rows.Add();
+            podcastGridView.Rows[rowIndex].Cells["Episode"].Value = podcast.TotalEpisodes;
+            podcastGridView.Rows[rowIndex].Cells["Title"].Value = podcast.Title;
+            podcastGridView.Rows[rowIndex].Cells["Category"].Value = podcast.Category.CategoryName;
+            podcastGridView.Rows[rowIndex].Cells["customName"].Value = podcast.Name;
         }
+
+
+
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -194,7 +188,7 @@ namespace ThePodcast
                 string title = podcastGridView.SelectedRows[0].Cells["Title"].Value.ToString();
                 DataGridViewRow selectedRow = podcastGridView.SelectedRows[0];
                 podcastGridView.Rows.Remove(selectedRow);
-                foreach(Podcast pod in podcasts)
+                foreach (Podcast pod in podcasts)
                 {
                     if (pod.Title.Equals(title))
                     {
@@ -210,7 +204,7 @@ namespace ThePodcast
             {
                 MessageBox.Show("No row selected. Please select a row to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
         }
 
         private void btnChange_Click(object sender, EventArgs e)
@@ -238,9 +232,9 @@ namespace ThePodcast
             {
                 MessageBox.Show("Name can not be empty.");
             }
-            
+
             //podcastController.SavePodcastListToXML(podcasts)
-            
+
 
         }
 

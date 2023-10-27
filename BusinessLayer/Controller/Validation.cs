@@ -23,7 +23,7 @@ namespace BusinessLayer.Controller
         }
 
 
-       
+
         // CheckIfUnique utan LINQ
         /*public Boolean CheckIfUnique(string input, List<string> currentCategories)
         {
@@ -46,11 +46,11 @@ namespace BusinessLayer.Controller
         }
          */
 
-        public bool CheckIfUnique(string input, List<string> currentCategories)
+        //Loopar genom listan och kollar om den innehåller input, returnerar en boolean
+        public bool CheckIfUnique(string input, List<string> currentItems)
         {
-            return !currentCategories.Any(category => category.Equals(input));
+            return !currentItems.Any(category => category.Equals(input));
         }
-
 
         public Boolean URLisValid(string url)
         {
