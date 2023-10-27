@@ -213,6 +213,7 @@
             // 
             // podcastGridView
             // 
+            podcastGridView.AllowUserToAddRows = false;
             podcastGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             podcastGridView.Columns.AddRange(new DataGridViewColumn[] { Episode, customName, Title, Category });
             podcastGridView.Location = new Point(23, 167);

@@ -86,8 +86,12 @@ namespace DataAccessLayer.Repository
                 string[] parts = line.Split(',');
                 foreach (string part in parts)
                 {
-                    Category category = new Category(part);
-                    categories.Add(category);
+                    if (!String.IsNullOrEmpty(part))
+                    {
+
+                        Category category = new Category(part);
+                        categories.Add(category);
+                    }
                 }
                 stream.Close();
                 fs.Close();
