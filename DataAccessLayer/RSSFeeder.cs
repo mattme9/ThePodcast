@@ -20,17 +20,17 @@ namespace DataAccessLayer
 
         }
 
-        public Podcast GetPodcast(string url, string podcastName, string category)
+        public async Task<Podcast> GetPodcast(string url, string podcastName, string category)
         {
             XmlReader xmlReader = XmlReader.Create(url);
-            SyndicationFeed sf = SyndicationFeed.Load(xmlReader);
+            SyndicationFeed sf = await Task.Run(() => SyndicationFeed.Load(xmlReader));
 
             string title = sf.Title.Text;
             string description = sf.Description.Text;
 
             Category cat = new Category(category);
 
-            List<Episode> episodeList = getEpisodes(url);
+            List<Episode> episodeList = await getEpisodes(url);
 
             int count = 0;
             foreach (Episode episode in episodeList)
@@ -42,7 +42,7 @@ namespace DataAccessLayer
             return podcast;
         }
 
-        public List<Episode> getEpisodes(string url)
+        public async Task<List<Episode>> getEpisodes(string url)
         {
             List<Episode> itemList = new List<Episode>();
 

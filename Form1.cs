@@ -140,7 +140,7 @@ namespace ThePodcast
 
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private async void btnAdd_Click(object sender, EventArgs e)
         {
 
             List<string> currentPodcastNames = podcasts.Select(podcast => podcast.Name).ToList();
@@ -165,7 +165,7 @@ namespace ThePodcast
             }
             string url = txtUrl.Text;
             string category = boxCategory.SelectedItem.ToString();
-            Podcast podcast = podcastController.CreatePodcast(url, podcastName, category);
+            Podcast podcast = await podcastController.CreatePodcast(url, podcastName, category);
             podcasts.Add(podcast);
 
 

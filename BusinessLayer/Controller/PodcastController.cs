@@ -16,9 +16,9 @@ namespace BusinessLayer
             feeder = new RSSFeeder();
         }
 
-        public Podcast CreatePodcast(string url, string podName, string category)
+        public async Task<Podcast> CreatePodcast(string url, string podName, string category)
         {
-                return feeder.GetPodcast(url, podName, category);  
+                return await feeder.GetPodcast(url, podName, category);  
         }
 
         public void SavePodcastListToXML(List<Podcast> podcastList)
