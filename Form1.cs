@@ -259,20 +259,13 @@ namespace ThePodcast
             {
                 string title = podcastGridView.SelectedRows[0].Cells["Title"].Value.ToString();
 
-                //episodeListBox.Items.Add(cellValue);
+                var selectedPodcast = podcasts.FirstOrDefault(p => p.Title.Equals(title));
 
-                foreach (Podcast poo in podcasts)
+                if (selectedPodcast != null)
                 {
-                    if (poo.Title.Equals(title))
-                    {
-                        podcastNameTxt.Text = poo.Name;
-                        foreach (Episode ep in poo.Episodes)
-                        {
-                            episodeListBox.Items.Add(ep.Title);
-                        }
-                    }
+                    podcastNameTxt.Text = selectedPodcast.Name;
+                    episodeListBox.Items.AddRange(selectedPodcast.Episodes.Select(ep => ep.Title).ToArray());
                 }
-
             }
         }
 
@@ -283,18 +276,14 @@ namespace ThePodcast
             string title = podcastGridView.SelectedRows[0].Cells["Title"].Value.ToString();
             string episode = episodeListBox.SelectedItem.ToString();
 
-            foreach (Podcast poo in podcasts)
+            var selectedEpisodeDescription = podcasts
+                .Where(p => p.Title.Equals(title))
+                .SelectMany(p => p.Episodes)
+                .FirstOrDefault(ep => ep.Title.Equals(episode))?.Description;
+
+            if (selectedEpisodeDescription != null)
             {
-                if (poo.Title.Equals(title))
-                {
-                    foreach (Episode ep in poo.Episodes)
-                    {
-                        if (ep.Title.Equals(episode))
-                        {
-                            summaryBox.Items.Add(ep.Description);
-                        }
-                    }
-                }
+                summaryBox.Items.Add(selectedEpisodeDescription);
             }
         }
     }
