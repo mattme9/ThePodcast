@@ -35,7 +35,7 @@ namespace DataAccessLayer
             }
 
             //Sker om programmet startas utan XML-fil, ex första uppstarten
-            catch (Exception ex) {
+            catch (FileNotFoundException) {
 
                 return new List<Podcast>() { };
             }
