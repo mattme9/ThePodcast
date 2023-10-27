@@ -49,35 +49,33 @@
             customName = new DataGridViewTextBoxColumn();
             Title = new DataGridViewTextBoxColumn();
             Category = new DataGridViewTextBoxColumn();
-            summaryBox = new ListBox();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)podcastGridView).BeginInit();
             SuspendLayout();
             // 
             // txtUrl
             // 
-            txtUrl.Location = new Point(43, 119);
-            txtUrl.Margin = new Padding(5);
+            txtUrl.Location = new Point(23, 56);
+            txtUrl.Margin = new Padding(3, 2, 3, 2);
             txtUrl.Name = "txtUrl";
-            txtUrl.Size = new Size(477, 39);
+            txtUrl.Size = new Size(259, 23);
             txtUrl.TabIndex = 0;
             // 
             // lblUrl
             // 
             lblUrl.AutoSize = true;
-            lblUrl.Location = new Point(43, 82);
-            lblUrl.Margin = new Padding(5, 0, 5, 0);
+            lblUrl.Location = new Point(23, 38);
             lblUrl.Name = "lblUrl";
-            lblUrl.Size = new Size(60, 32);
+            lblUrl.Size = new Size(31, 15);
             lblUrl.TabIndex = 1;
             lblUrl.Text = "URL:";
             // 
             // lblCategory
             // 
             lblCategory.AutoSize = true;
-            lblCategory.Location = new Point(43, 177);
-            lblCategory.Margin = new Padding(5, 0, 5, 0);
+            lblCategory.Location = new Point(23, 83);
             lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(115, 32);
+            lblCategory.Size = new Size(58, 15);
             lblCategory.TabIndex = 2;
             lblCategory.Text = "Category:";
             // 
@@ -85,18 +83,18 @@
             // 
             boxCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             boxCategory.FormattingEnabled = true;
-            boxCategory.Location = new Point(43, 213);
-            boxCategory.Margin = new Padding(5);
+            boxCategory.Location = new Point(23, 100);
+            boxCategory.Margin = new Padding(3, 2, 3, 2);
             boxCategory.Name = "boxCategory";
-            boxCategory.Size = new Size(152, 40);
+            boxCategory.Size = new Size(84, 23);
             boxCategory.TabIndex = 3;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(44, 293);
-            btnAdd.Margin = new Padding(5);
+            btnAdd.Location = new Point(24, 137);
+            btnAdd.Margin = new Padding(3, 2, 3, 2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(153, 46);
+            btnAdd.Size = new Size(82, 22);
             btnAdd.TabIndex = 4;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -104,10 +102,10 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(207, 293);
-            btnDelete.Margin = new Padding(5);
+            btnDelete.Location = new Point(111, 137);
+            btnDelete.Margin = new Padding(3, 2, 3, 2);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(153, 46);
+            btnDelete.Size = new Size(82, 22);
             btnDelete.TabIndex = 5;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -115,10 +113,10 @@
             // 
             // btnChange
             // 
-            btnChange.Location = new Point(369, 293);
-            btnChange.Margin = new Padding(5);
+            btnChange.Location = new Point(199, 137);
+            btnChange.Margin = new Padding(3, 2, 3, 2);
             btnChange.Name = "btnChange";
-            btnChange.Size = new Size(153, 46);
+            btnChange.Size = new Size(82, 22);
             btnChange.TabIndex = 6;
             btnChange.Text = "Change";
             btnChange.UseVisualStyleBackColor = true;
@@ -126,38 +124,38 @@
             // 
             // podcastNameTxt
             // 
-            podcastNameTxt.Location = new Point(247, 215);
-            podcastNameTxt.Margin = new Padding(5);
+            podcastNameTxt.Location = new Point(133, 101);
+            podcastNameTxt.Margin = new Padding(3, 2, 3, 2);
             podcastNameTxt.Name = "podcastNameTxt";
-            podcastNameTxt.Size = new Size(272, 39);
+            podcastNameTxt.Size = new Size(148, 23);
             podcastNameTxt.TabIndex = 8;
             // 
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new Point(247, 178);
-            lblName.Margin = new Padding(5, 0, 5, 0);
+            lblName.Location = new Point(133, 83);
             lblName.Name = "lblName";
-            lblName.Size = new Size(83, 32);
+            lblName.Size = new Size(42, 15);
             lblName.TabIndex = 9;
             lblName.Text = "Name:";
             // 
             // episodeListBox
             // 
             episodeListBox.FormattingEnabled = true;
-            episodeListBox.ItemHeight = 32;
-            episodeListBox.Location = new Point(986, 356);
+            episodeListBox.ItemHeight = 15;
+            episodeListBox.Location = new Point(531, 167);
+            episodeListBox.Margin = new Padding(2, 1, 2, 1);
             episodeListBox.Name = "episodeListBox";
-            episodeListBox.Size = new Size(505, 452);
+            episodeListBox.Size = new Size(274, 214);
             episodeListBox.TabIndex = 10;
             episodeListBox.SelectedIndexChanged += episodeListBox_SelectedIndexChanged;
             // 
             // changeCategoryBtn
             // 
-            changeCategoryBtn.Location = new Point(1834, 293);
-            changeCategoryBtn.Margin = new Padding(5);
+            changeCategoryBtn.Location = new Point(988, 137);
+            changeCategoryBtn.Margin = new Padding(3, 2, 3, 2);
             changeCategoryBtn.Name = "changeCategoryBtn";
-            changeCategoryBtn.Size = new Size(149, 46);
+            changeCategoryBtn.Size = new Size(80, 22);
             changeCategoryBtn.TabIndex = 18;
             changeCategoryBtn.Text = "Change";
             changeCategoryBtn.UseVisualStyleBackColor = true;
@@ -165,10 +163,10 @@
             // 
             // deleteCategoryBtn
             // 
-            deleteCategoryBtn.Location = new Point(1672, 293);
-            deleteCategoryBtn.Margin = new Padding(5);
+            deleteCategoryBtn.Location = new Point(900, 137);
+            deleteCategoryBtn.Margin = new Padding(3, 2, 3, 2);
             deleteCategoryBtn.Name = "deleteCategoryBtn";
-            deleteCategoryBtn.Size = new Size(149, 46);
+            deleteCategoryBtn.Size = new Size(80, 22);
             deleteCategoryBtn.TabIndex = 17;
             deleteCategoryBtn.Text = "Delete";
             deleteCategoryBtn.UseVisualStyleBackColor = true;
@@ -176,10 +174,10 @@
             // 
             // addCategoryBtn
             // 
-            addCategoryBtn.Location = new Point(1509, 293);
-            addCategoryBtn.Margin = new Padding(5);
+            addCategoryBtn.Location = new Point(813, 137);
+            addCategoryBtn.Margin = new Padding(3, 2, 3, 2);
             addCategoryBtn.Name = "addCategoryBtn";
-            addCategoryBtn.Size = new Size(149, 46);
+            addCategoryBtn.Size = new Size(80, 22);
             addCategoryBtn.TabIndex = 16;
             addCategoryBtn.Text = "Add";
             addCategoryBtn.UseVisualStyleBackColor = true;
@@ -188,28 +186,28 @@
             // modifyCategoryLbl
             // 
             modifyCategoryLbl.AutoSize = true;
-            modifyCategoryLbl.Location = new Point(1505, 207);
-            modifyCategoryLbl.Margin = new Padding(5, 0, 5, 0);
+            modifyCategoryLbl.Location = new Point(810, 97);
             modifyCategoryLbl.Name = "modifyCategoryLbl";
-            modifyCategoryLbl.Size = new Size(115, 32);
+            modifyCategoryLbl.Size = new Size(58, 15);
             modifyCategoryLbl.TabIndex = 13;
             modifyCategoryLbl.Text = "Category:";
             // 
             // categoryNameTxt
             // 
-            categoryNameTxt.Location = new Point(1509, 244);
-            categoryNameTxt.Margin = new Padding(5);
+            categoryNameTxt.Location = new Point(813, 114);
+            categoryNameTxt.Margin = new Padding(3, 2, 3, 2);
             categoryNameTxt.Name = "categoryNameTxt";
-            categoryNameTxt.Size = new Size(473, 39);
+            categoryNameTxt.Size = new Size(257, 23);
             categoryNameTxt.TabIndex = 12;
             // 
             // categoryListBox
             // 
             categoryListBox.FormattingEnabled = true;
-            categoryListBox.ItemHeight = 32;
-            categoryListBox.Location = new Point(1509, 356);
+            categoryListBox.ItemHeight = 15;
+            categoryListBox.Location = new Point(813, 167);
+            categoryListBox.Margin = new Padding(2, 1, 2, 1);
             categoryListBox.Name = "categoryListBox";
-            categoryListBox.Size = new Size(261, 452);
+            categoryListBox.Size = new Size(142, 214);
             categoryListBox.TabIndex = 19;
             categoryListBox.SelectedIndexChanged += categoryListBox_SelectedIndexChanged;
             // 
@@ -217,13 +215,14 @@
             // 
             podcastGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             podcastGridView.Columns.AddRange(new DataGridViewColumn[] { Episode, customName, Title, Category });
-            podcastGridView.Location = new Point(43, 356);
+            podcastGridView.Location = new Point(23, 167);
+            podcastGridView.Margin = new Padding(2, 1, 2, 1);
             podcastGridView.Name = "podcastGridView";
             podcastGridView.ReadOnly = true;
             podcastGridView.RowHeadersWidth = 82;
             podcastGridView.RowTemplate.Height = 41;
             podcastGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            podcastGridView.Size = new Size(934, 452);
+            podcastGridView.Size = new Size(503, 212);
             podcastGridView.TabIndex = 20;
             podcastGridView.CellClick += podcastGridView_CellClick;
             // 
@@ -259,23 +258,22 @@
             Category.Name = "Category";
             Category.ReadOnly = true;
             // 
-            // summaryBox
+            // textBox1
             // 
-            summaryBox.FormattingEnabled = true;
-            summaryBox.HorizontalScrollbar = true;
-            summaryBox.ItemHeight = 32;
-            summaryBox.Location = new Point(986, 143);
-            summaryBox.MultiColumn = true;
-            summaryBox.Name = "summaryBox";
-            summaryBox.Size = new Size(505, 196);
-            summaryBox.TabIndex = 21;
+            textBox1.Location = new Point(530, 12);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.ScrollBars = ScrollBars.Vertical;
+            textBox1.Size = new Size(274, 151);
+            textBox1.TabIndex = 22;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2082, 1012);
-            Controls.Add(summaryBox);
+            ClientSize = new Size(1245, 578);
+            Controls.Add(textBox1);
             Controls.Add(podcastGridView);
             Controls.Add(categoryListBox);
             Controls.Add(changeCategoryBtn);
@@ -293,7 +291,7 @@
             Controls.Add(lblCategory);
             Controls.Add(lblUrl);
             Controls.Add(txtUrl);
-            Margin = new Padding(5);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)podcastGridView).EndInit();
@@ -325,6 +323,6 @@
         private DataGridViewTextBoxColumn customName;
         private DataGridViewTextBoxColumn Title;
         private DataGridViewTextBoxColumn Category;
-        private ListBox summaryBox;
+        private TextBox textBox1;
     }
 }
