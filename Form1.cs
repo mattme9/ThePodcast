@@ -252,7 +252,7 @@ namespace ThePodcast
             }
         }
 
-        private void podcastGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void podcastGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             episodeListBox.Items.Clear();
             if (podcastGridView.SelectedRows.Count > 0)
