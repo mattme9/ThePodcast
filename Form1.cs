@@ -142,8 +142,10 @@ namespace ThePodcast
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-        
             List<string> currentPodcastNames = podcasts.Select(podcast => podcast.Name).ToList();
+         
+            string podcastName = podcastNameTxt.Text;
+            
 
             if (validation.CheckIfEmpty(txtUrl.Text) ||
                 validation.CheckIfEmpty(podcastNameTxt.Text) ||
@@ -156,17 +158,23 @@ namespace ThePodcast
             {
                 MessageBox.Show("There is a problem with your URL");
                 return;
-            }   
-            string podcastName = podcastNameTxt.Text;
+            }
+
+            
             if (!validation.CheckIfUnique(podcastName, currentPodcastNames))
             {
                 MessageBox.Show("This name already exists");
                 return;
-            }            
+            }     
+            
+
+          
+
             string url = txtUrl.Text;
             string category = boxCategory.SelectedItem.ToString();
             Podcast podcast = podcastController.CreatePodcast(url, podcastName, category);
             podcasts.Add(podcast);
+
 
             
             podcastController.SavePodcastListToXML(podcasts);
