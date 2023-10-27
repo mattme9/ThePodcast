@@ -225,7 +225,7 @@
             podcastGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             podcastGridView.Size = new Size(934, 452);
             podcastGridView.TabIndex = 20;
-            podcastGridView.CellContentClick += podcastGridView_CellContentClick;
+            podcastGridView.CellClick += podcastGridView_CellClick;
             // 
             // Episode
             // 
