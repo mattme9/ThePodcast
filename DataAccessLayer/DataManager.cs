@@ -22,6 +22,9 @@ namespace DataAccessLayer
 
         public List<Podcast> GetPodcastData()
         {
+            
+            try { 
+
             List<Podcast> podcasts;
             XmlSerializer xmlSerializer = new XmlSerializer (typeof(List<Podcast>));
             FileStream fs = new FileStream("data.xml", FileMode.Open, FileAccess.Read);
@@ -29,6 +32,13 @@ namespace DataAccessLayer
             podcasts = (List<Podcast>)xmlSerializer.Deserialize(fs);
             fs.Close();
             return podcasts;
+            }
+
+            //Sker om programmet startas utan XML-fil, ex första uppstarten
+            catch (Exception ex) {
+
+                return new List<Podcast>() { };
+            }
         }
     }
 }
