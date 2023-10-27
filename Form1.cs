@@ -142,6 +142,7 @@ namespace ThePodcast
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
             List<string> currentPodcastNames = podcasts.Select(podcast => podcast.Name).ToList();
          
             string podcastName = podcastNameTxt.Text;
@@ -153,30 +154,24 @@ namespace ThePodcast
             {
                 MessageBox.Show("Error! Något fält är tomt.");
                 return;
-            }            
+            }
             if (!validation.URLisValid(txtUrl.Text))
             {
                 MessageBox.Show("There is a problem with your URL");
                 return;
             }
-
-            
+            string podcastName = podcastNameTxt.Text;
             if (!validation.CheckIfUnique(podcastName, currentPodcastNames))
             {
                 MessageBox.Show("This name already exists");
                 return;
-            }     
-            
-
-          
-
+            }
             string url = txtUrl.Text;
             string category = boxCategory.SelectedItem.ToString();
             Podcast podcast = podcastController.CreatePodcast(url, podcastName, category);
             podcasts.Add(podcast);
 
 
-            
             podcastController.SavePodcastListToXML(podcasts);
 
             int rowIndex = podcastGridView.Rows.Add();
@@ -273,8 +268,7 @@ namespace ThePodcast
 
         private void episodeListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            summaryBox.Items.Clear();
-
+            textBox1.Clear();
             string title = podcastGridView.SelectedRows[0].Cells["Title"].Value.ToString();
             string episode = episodeListBox.SelectedItem.ToString();
 
@@ -285,8 +279,13 @@ namespace ThePodcast
 
             if (selectedEpisodeDescription != null)
             {
-                summaryBox.Items.Add(selectedEpisodeDescription);
+                textBox1.Text = selectedEpisodeDescription;
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
