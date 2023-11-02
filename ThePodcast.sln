@@ -3,13 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePodcast", "ThePodcast.csproj", "{F1E6B494-2CB2-425D-9514-56F4CE3603D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThePodcast", "ThePodcast.csproj", "{F1E6B494-2CB2-425D-9514-56F4CE3603D9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{47BC26A4-9EB5-416E-A91D-DB489721ABB5} = {47BC26A4-9EB5-416E-A91D-DB489721ABB5}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{2B72EA1C-05D0-4104-B707-E8C44BBE8C6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{2B72EA1C-05D0-4104-B707-E8C44BBE8C6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{47BC26A4-9EB5-416E-A91D-DB489721ABB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{47BC26A4-9EB5-416E-A91D-DB489721ABB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{B520577C-7230-4097-AEEF-C88BA1628166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{B520577C-7230-4097-AEEF-C88BA1628166}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

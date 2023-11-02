@@ -15,4 +15,12 @@
     <ProjectReference Include="Models\Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ServiceModel.Syndication" Version="7.0.0" />
+  </ItemGroup>
+
 </Project>
